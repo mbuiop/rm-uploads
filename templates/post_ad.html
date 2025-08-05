@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="form-container">
+        <h2>ثبت آگهی کار جدید</h2>
+        <form action="{{ url_for('post_ad') }}" method="POST">
+            <div class="form-group">
+                <label for="title">عنوان آگهی:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="description">توضیحات:</label>
+                <textarea id="description" name="description" rows="5" required></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="contact">آی‌دی تلگرام یا اینستاگرام (الزامی):</label>
+                <input type="text" id="contact" name="contact" required placeholder="@username">
+            </div>
+            
+            <div class="form-group">
+                <label for="category">دسته بندی:</label>
+                <select id="category" name="category" required>
+                    <option value="">-- انتخاب کنید --</option>
+                    <option value="programming">برنامه نویسی</option>
+                    <option value="sewing">خیاطی</option>
+                    <option value="support">پشتیبانی</option>
+                    <option value="restaurant">رستوران</option>
+                    <option value="other">متفرقه</option>
+                </select>
+            </div>
+            
+            <button type="submit" class="btn primary">ثبت آگهی</button>
+        </form>
+    </div>
+{% endblock %}
