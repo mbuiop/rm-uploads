@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="categories-filter">
+        <h2>دسته بندی ها</h2>
+        <div class="category-buttons">
+            <a href="{{ url_for('ads_list') }}" class="category-btn {% if not request.args.get('category') %}active{% endif %}">همه</a>
+            <a href="{{ url_for('ads_list', category='programming') }}" class="category-btn {% if request.args.get('category') == 'programming' %}active{% endif %}">برنامه نویسی</a>
+            <a href="{{ url_for('ads_list', category='sewing') }}" class="category-btn {% if request.args.get('category') == 'sewing' %}active{% endif %}">خیاطی</a>
+            <a href="{{ url_for('ads_list', category='support') }}" class="category-btn {% if request.args.get('category') == 'support' %}active{% endif %}">پشتیبانی</a>
+            <a href="{{ url_for('ads_list', category='restaurant') }}" class="category-btn {% if request.args.get('category') == 'restaurant' %}active{% endif %}">رستوران</a>
+            <a href="{{ url_for('ads_list', category='other') }}" class="category-btn {% if request.args.get('category') == 'other' %}active{% endif %}">متفرقه</a>
+        </div>
+    </div>
+
+    <div class="ads-grid">
+        {% for ad in ads %}
+        <div class="ad-card">
+            <h3>{{ ad.title }}</h3>
+            <div class="ad-category">{{ ad.category }}</div>
+            <p class="ad-description">{{ ad.description }}</p>
+            <div class="ad-contact">
+                <i class="fas fa-user"></i>
+                <span>{{ ad.contact }}</span>
+            </div>
+        </div>
+        {% else %}
+        <div class="no-ads">
+            <p>هیچ آگهی یافت نشد.</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
